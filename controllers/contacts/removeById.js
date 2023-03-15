@@ -5,19 +5,11 @@ const contactsOperations = require("../../models/contacts");
 
 const removeById = async (req, res) => {
 
-  const { id } = req.params;
-  const result = await contactsOperations.removeContact(id);
-  if (!result) {
-    throw new NotFound(`Contact with id =${id} not found `);
-  }
-  res.json({
-    status: "success",
-    code: 200,
-    message: "contact deleted",
-    data: {
-      result
-    }
-  })
+  const { contactId } = req.params;
+  const result = await contactsOperations.removeContact(contactId);
+   return result
+    ? res.status(200).json({ message: "contact deleted" })
+    : res.status(404).json({ message: "Not Found" });
  
 };
 
