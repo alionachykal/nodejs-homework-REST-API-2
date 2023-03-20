@@ -6,6 +6,7 @@ const { joiSchema , favoriteJoiSchema } = require("../../models/contacts");
 const { contacts: ctrl } = require("../../controllers");
 
 
+
 const router = express.Router()
 
 router.get('/', ctrlWrapper( ctrl.getListContacts)); 
