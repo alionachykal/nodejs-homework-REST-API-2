@@ -7,27 +7,21 @@ const register = async (req, res) => {
     const { email, password, subscription } = req.body;
     const user = await User.findOne({email});
     if (user) {
-        return res.status(409).json({
-            status: 'Conflict',
-            code: 409,
-            message: 'Email is already in use',
+        throw new Conflict("Email in use")
             
-        })
+        
     }
     const newUser = new User({ email, password, subscription });
     newUser.setPassword(password);
-        newUser.save();
+     newUser.save();
     res.status(201).json({
-        status: 'success',
-        code: 201,
-        message: 'Registration successful',
-        data: {
+        RequestBody: {
             email,
-            password
-        },
+            password,
+            subscription: "starter"
+        }
+    });
             
-    
-		})
 }
 
 module.exports = register;

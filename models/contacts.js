@@ -22,7 +22,6 @@ const contactSchema = Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'user',
 		},
-    token: String
   },{versionKey: false, timestamps:true}
 );
 

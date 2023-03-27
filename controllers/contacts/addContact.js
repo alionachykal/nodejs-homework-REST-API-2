@@ -1,7 +1,7 @@
 const { Contact } = require('../../models');
 
 const addContact = async (req, res) => {
-  const {_id} =req.user
+  const {_id} = req.user
   let { name, email, phone, favorite } = req.body
   if (!favorite) {
 		favorite = false
