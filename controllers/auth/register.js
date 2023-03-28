@@ -15,9 +15,8 @@ const register = async (req, res) => {
     newUser.setPassword(password);
      newUser.save();
     res.status(201).json({
-        RequestBody: {
+        "user": {
             email,
-            password,
             subscription: "starter"
         }
     });
