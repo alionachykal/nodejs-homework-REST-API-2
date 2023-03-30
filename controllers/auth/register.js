@@ -1,7 +1,6 @@
 
 const { User } = require("../../models/user");
 const { Conflict } = require("http-errors");
-// const bcrypt = require("bcryptjs");
 
 const register = async (req, res) => {
     const { email, password, subscription } = req.body;

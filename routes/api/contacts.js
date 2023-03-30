@@ -1,19 +1,18 @@
 const express = require('express')
 
-const { validation, ctrlWrapper } = require("../../middelwares");
+const {auth, validation, ctrlWrapper } = require("../../middelwares");
 
 const { joiSchema , favoriteJoiSchema } = require("../../models/contacts");
 const { contacts: ctrl } = require("../../controllers");
 
 
-
 const router = express.Router()
 
-router.get('/', ctrlWrapper( ctrl.getListContacts)); 
+router.get('/', auth , ctrlWrapper( ctrl.getListContacts)); 
 
 router.get('/:contactId', ctrlWrapper(ctrl.getContactById));
 
-router.post('/', validation(joiSchema), ctrlWrapper(ctrl.addContact));
+router.post('/', auth , validation(joiSchema), ctrlWrapper(ctrl.addContact));
 
 router.delete('/:contactId', ctrlWrapper(ctrl.removeById));
 
