@@ -22,10 +22,12 @@ const userSchema = Schema({
     token: {
         type: String,
         default: null
+    },
+     avatarURL: {
+        type: String,
+        required: true
     }
-
-    
-}, { versionKey: false, timestamps: true });
+}, {versionKey: false, timestamps: true});
 
 
 userSchema.methods.setPassword = function(password) {
