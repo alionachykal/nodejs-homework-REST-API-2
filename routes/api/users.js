@@ -3,12 +3,17 @@ const { auth, upload, validation, ctrlWrapper } = require("../../middelwares");
 const { auth: ctrl } = require("../../controllers");
 const { users: controller } = require("../../controllers");
 
-const { joiRegisterSchema,  joiLoginSchema } = require("../../models/user");
+const { joiRegisterSchema,  joiLoginSchema, emailSchema} = require("../../models/user");
+const e = require('cors');
 
 
 const router = express.Router();
 
 router.post("/register", validation(joiRegisterSchema), ctrlWrapper(ctrl.register));
+
+router.get("/verify/:verificationToken", ctrlWrapper(controller.verifyEmail));
+
+router.post("/verify", validation(emailSchema), ctrlWrapper(ctrl.resendVerifyEmail));
 
 router.post("/login", validation(joiLoginSchema), ctrlWrapper(ctrl.login));
 
